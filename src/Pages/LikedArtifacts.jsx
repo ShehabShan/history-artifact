@@ -3,6 +3,7 @@ import useAuthDetails from "../Context/AuthContext/useAuthDetails";
 import LikedCard from "./LikedCard";
 import noDataImg from "../assets/icon/no-data-available.webp";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import NoDataPage from "../Component/NoDataPage";
 
 const LikedArtifacts = () => {
   const { user } = useAuthDetails();
@@ -51,12 +52,7 @@ const LikedArtifacts = () => {
         </div>
       ) : (
         <div>
-          <img
-            className="w-full h-[calc(100vh - 206px)]"
-            style={{ height: "calc(100vh - 206px)" }}
-            src={noDataImg}
-            alt=""
-          />
+          <NoDataPage></NoDataPage>
         </div>
       )}
     </div>

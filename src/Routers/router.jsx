@@ -14,12 +14,13 @@ import UpdateMyArtifact from "../Pages/UpdateMyArtifact";
 import notFound from "../assets/icon/notFound.webp";
 import ExtraFeature from "../Pages/Countdown/ExtraFeature";
 import ContactPage from "../Pages/shared/ContactPage";
+import ErrorPage from "../Component/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement: <img className="w-full h-[100vh]" src={notFound} alt="" />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,

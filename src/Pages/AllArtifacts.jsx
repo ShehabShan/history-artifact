@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import Card from "./Card";
+import NoDataPage from "../Component/NoDataPage";
 
 const AllArtifacts = () => {
   const [artifacts, setArtifacts] = useState([]);
@@ -73,14 +74,7 @@ const AllArtifacts = () => {
       </form>
 
       {artifacts.length === 0 ? (
-        <div className="text-4xl h-[50vh] text-gray-950 flex flex-col gap-4 border text-center items-center justify-center">
-          <h2>404 Not Found</h2>
-          <p>No artifacts match your search criteria</p>
-
-          <p onClick={handleGoBack} className="text-2xl btn text-red-200">
-            Go Back
-          </p>
-        </div>
+        <NoDataPage></NoDataPage>
       ) : (
         <div className="grid p-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 ">
           {artifacts.map((artifact) => (
