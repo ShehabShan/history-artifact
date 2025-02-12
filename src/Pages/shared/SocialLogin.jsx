@@ -15,10 +15,10 @@ const SocialLogin = () => {
   };
 
   return (
-    <div className="mb-3">
+    <div className="mb-3 ">
       <button
         onClick={handleGoogleSingIn}
-        className="btn px-12 bg-blue-500 text-white"
+        className="btn px-16 text-xl bg-blue-500 text-white"
       >
         Google
       </button>

@@ -141,8 +141,8 @@ const Register = () => {
               </span>
             </div>
           </div>
-          <div className="mt-6">
-            <SocialLogin />
+          <div className="mt-4 flex justify-center">
+            <SocialLogin  />
           </div>
         </div>
       </div>

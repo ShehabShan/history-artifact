@@ -52,14 +52,18 @@ const Navbar = () => {
           All Artifacts
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/addArtifacts"
-          className="hover:text-blue-400 transition-colors duration-300"
-        >
-          Add Artifacts
-        </NavLink>
-      </li>
+
+      {user && (
+        <li>
+          <NavLink
+            to="/addArtifacts"
+            className="hover:text-blue-400 transition-colors duration-300"
+          >
+            Add Artifacts
+          </NavLink>
+        </li>
+      )}
+
       <li>
         <NavLink
           to="/marketplace"
@@ -100,7 +104,7 @@ const Navbar = () => {
       <li>
         <button
           onClick={hanldeSingOut}
-          className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300 w-full text-left"
+          className="bg-[#345fe5] text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300 w-full text-left"
         >
           Sign Out
         </button>
