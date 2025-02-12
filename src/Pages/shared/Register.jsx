@@ -4,7 +4,7 @@ import SocialLogin from "./SocialLogin";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuthDetails from "../../Context/AuthContext/useAuthDetails";
 import { toast } from "react-hot-toast";
-
+import { useEffect } from "react";
 
 const Register = () => {
   const { setUser, createUser, updateUserProfile } = useAuthDetails();
@@ -44,86 +44,110 @@ const Register = () => {
     }
   };
 
+  useEffect(() => {
+    const form = document.querySelector("form");
+    form.style.opacity = "0";
+    form.style.transform = "translateY(20px)";
+    setTimeout(() => {
+      form.style.transition = "opacity 0.5s ease-out, transform 0.5s ease-out";
+      form.style.opacity = "1";
+      form.style.transform = "translateY(0)";
+    }, 100);
+  }, []);
+
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left w-96">
-          <Lottie animationData={registerLottieData}></Lottie>
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-2xl">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Create your account
+          </h2>
         </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <h1 className="text-5xl font-bold">Register!</h1>
-          <form onSubmit={handleUserRegistration} className="card-body">
-            {/* username */}
-
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">name</span>
+        <form className="mt-8 space-y-6" onSubmit={handleUserRegistration}>
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="name" className="sr-only">
+                Name
               </label>
               <input
-                type="text"
-                placeholder="user name"
-                className="input input-bordered"
+                id="name"
                 name="name"
+                type="text"
                 required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Name"
               />
             </div>
-
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
+            <div>
+              <label htmlFor="email-address" className="sr-only">
+                Email address
               </label>
               <input
-                type="email"
-                placeholder="email"
-                className="input input-bordered"
+                id="email-address"
                 name="email"
+                type="email"
+                autoComplete="email"
                 required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Email address"
               />
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
+            <div>
+              <label htmlFor="password" className="sr-only">
+                Password
               </label>
               <input
-                type="password"
-                placeholder="password"
-                className="input input-bordered"
+                id="password"
                 name="password"
+                type="password"
+                autoComplete="new-password"
                 required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Password"
               />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
             </div>
-
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Photo URL</span>
+            <div>
+              <label htmlFor="photo" className="sr-only">
+                Photo URL
               </label>
               <input
-                type="url"
-                placeholder="Photo URL"
-                className="input input-bordered"
+                id="photo"
                 name="photo"
+                type="url"
                 required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Photo URL"
               />
             </div>
+          </div>
 
-            <div className="form-control mt-6">
-              <input
-                type="submit"
-                value="Register"
-                className="btn bg-blue-400 text-white"
-              />
+          <div>
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300 ease-in-out"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+        <div className="mt-6">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
             </div>
-          </form>
-          <div className="divider">OR</div>
-          <div className="mx-auto">
-            <SocialLogin></SocialLogin>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">
+                Or continue with
+              </span>
+            </div>
+          </div>
+          <div className="mt-6">
+            <SocialLogin />
           </div>
         </div>
+      </div>
+      <div className="hidden lg:block w-1/2 ml-8">
+        <Lottie animationData={registerLottieData} className="w-full h-auto" />
       </div>
     </div>
   );

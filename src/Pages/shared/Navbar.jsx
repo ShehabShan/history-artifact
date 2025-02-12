@@ -10,7 +10,6 @@ const Navbar = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Listen for scroll events
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -22,7 +21,6 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup the event listener on unmount
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -39,19 +37,44 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink
+          to="/"
+          className="hover:text-blue-400 transition-colors duration-300"
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/allArtifacts">All Artifacts</NavLink>
+        <NavLink
+          to="/allArtifacts"
+          className="hover:text-blue-400 transition-colors duration-300"
+        >
+          All Artifacts
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/addArtifacts">Add Artifacts</NavLink>
+        <NavLink
+          to="/addArtifacts"
+          className="hover:text-blue-400 transition-colors duration-300"
+        >
+          Add Artifacts
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/marketplace">Marketplace</NavLink>
+        <NavLink
+          to="/marketplace"
+          className="hover:text-blue-400 transition-colors duration-300"
+        >
+          Marketplace
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink
+          to="/contact"
+          className="hover:text-blue-400 transition-colors duration-300"
+        >
+          Contact
+        </NavLink>
       </li>
     </>
   );
@@ -59,31 +82,35 @@ const Navbar = () => {
   const dropDown = (
     <>
       <li>
-        <NavLink to="/myArtifacts" className="justify-between">
+        <NavLink
+          to="/myArtifacts"
+          className="justify-between hover:bg-blue-100 transition-colors duration-300"
+        >
           My Artifacts
         </NavLink>
       </li>
       <li>
-        <NavLink to="/LikedArtifacts">Liked Artifacts</NavLink>
+        <NavLink
+          to="/LikedArtifacts"
+          className="hover:bg-blue-100 transition-colors duration-300"
+        >
+          Liked Artifacts
+        </NavLink>
       </li>
       <li>
         <button
           onClick={hanldeSingOut}
-          className=" bg-blue-500 text-white py-1 border flex justify-center "
+          className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300 w-full text-left"
         >
-          Sing Out
+          Sign Out
         </button>
       </li>
     </>
   );
 
   return (
-    <div
-      className={`fixed w-full top-0  left-0 z-50 transition-colors duration-300 ${
-        isScrolled ? "bg-[#262626] text-white" : "bg-transparent text-[#000000]"
-      }`}
-    >
-      <div className="navbar px-2 max-w-[1440px] mx-auto">
+    <div className="bg-gradient-to-r from-[#345fe5] to-[#345fe5] text-white shadow-lg  fixed w-full top-0 left-0 z-50">
+      <div className="navbar px-4 py-3 max-w-[1440px] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -104,46 +131,55 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 text-[#7d7d7d] rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-white text-gray-800 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg"
             >
               {links}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost text-xl">
-            <img className="w-12 rounded-full" src={logo} alt="Logo" />
-            <h3 className="text-2xl ">Historical Artifacts Tracker</h3>
+            <img
+              className="w-12 rounded-full shadow-md"
+              src={logo || "/placeholder.svg"}
+              alt="Logo"
+            />
+            <h3 className="text-2xl font-semibold ml-2 hidden sm:inline">
+              Historical Artifacts Tracker
+            </h3>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className=" flex gap-3 text-[#7d7d7d]">{links}</ul>
+          <ul className="flex gap-6 text-lg font-medium">{links}</ul>
         </div>
 
         <div className="navbar-end">
           {!user ? (
             <div className="space-x-4">
-              <Link to="/singin" className="btn bg-blue-500 text-white ">
-                Sing In
+              <Link
+                to="/singin"
+                className="btn border-none bg-blue-500 hover:bg-blue-600 text-white transition-colors duration-300"
+              >
+                Sign In
               </Link>
             </div>
           ) : (
             <>
-              <div id="profilePic" className="dropdown dropdown-end  ">
+              <div id="profilePic" className="dropdown dropdown-end">
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn btn-ghost btn-circle avatar"
+                  className="btn btn-ghost btn-circle avatar border-2 border-blue-300 hover:border-blue-400 transition-all duration-300"
                 >
                   <div className="w-10 rounded-full">
                     <img
-                      alt="Tailwind CSS Navbar component"
-                      src={user?.photoURL}
+                      alt="User Avatar"
+                      src={user?.photoURL || "/placeholder.svg"}
+                      className="object-cover"
                     />
                   </div>
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow
-                gap-1"
+                  className="menu menu-sm dropdown-content bg-white text-gray-800 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg"
                 >
                   {dropDown}
                 </ul>
